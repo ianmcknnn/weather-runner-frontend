@@ -1,14 +1,14 @@
 import React from 'react';
+import Signup from './Signup';
+import {Container} from 'semantic-ui-react';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src='' alt=''/>
-      </header>
-      <body>
-      </body>
+      <Container>
+        <Signup /> 
+      </Container>
     </div>
   );
 }
