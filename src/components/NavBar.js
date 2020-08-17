@@ -53,7 +53,7 @@ class NavBar extends React.Component {
             onClick={this.handleItemClick}
             />
           :
-            <AuthModal />
+            <AuthModal handleLogin={this.props.handleLogin} />
           }
         </Menu.Menu>
       </Menu>

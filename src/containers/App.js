@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container} from 'semantic-ui-react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import '../App.css';
 import NavBar from '../components/NavBar';
 import FriendsContainer from './FriendsContainer';
@@ -14,22 +14,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
-        <NavBar loggedIn={this.state.loggedIn} />
+      <React.Fragment>
+        <NavBar handleLogin={this.handleLogin} loggedIn={this.state.loggedIn} />
         <Router>
-        <Container>
-          <Switch>
-          <Route path="/schedule" render={<ScheduleContainer/>}/>
-          <Route exact path="/stats" render={<StatsContainer/>}/>
-          <Route path="/friends" render={<FriendsContainer/>} />
-          </Switch>
-        </Container>
+          <Container>
+            <Route path="/schedule" render={() => <ScheduleContainer/>}/>
+            <Route exact path="/stats" render={() => <StatsContainer/>}/>
+            <Route path="/friends" render={() => <FriendsContainer/>} />
+          </Container>
         </Router>
-      </>
+      </React.Fragment>
     );
   }
-  handleLogin = (data, e) => {
-    e.target.reset()
+  handleLogin = (data) => {
     localStorage.token = data.token
     this.loggedIn()
   }
