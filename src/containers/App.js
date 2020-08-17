@@ -3,6 +3,7 @@ import {Container} from 'semantic-ui-react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import '../App.css';
 import NavBar from '../components/NavBar';
+import ProfileContainer from './ProfileContainer';
 import FriendsContainer from './FriendsContainer';
 import StatsContainer from './StatsContainer';
 import ScheduleContainer from './ScheduleContainer';
@@ -14,16 +15,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <NavBar handleLogin={this.handleLogin} loggedIn={this.state.loggedIn} />
+        
         <Router>
+          <NavBar handleLogin={this.handleLogin} loggedIn={this.state.loggedIn} />
           <Container>
+          <Route path="/profile" render={() => <ProfileContainer/>}/>
             <Route path="/schedule" render={() => <ScheduleContainer/>}/>
             <Route exact path="/stats" render={() => <StatsContainer/>}/>
             <Route path="/friends" render={() => <FriendsContainer/>} />
           </Container>
         </Router>
-      </React.Fragment>
+
     );
   }
   handleLogin = (data) => {
