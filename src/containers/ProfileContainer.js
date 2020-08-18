@@ -2,7 +2,12 @@ import React from 'react'
 
 class ProfileContainer extends React.Component {
   render() {
-    return ("PROFILE")
+    const {user} = this.props
+    return (
+      <div>
+        {user ? user.name : null}
+      </div>
+    )
   }
 }
 

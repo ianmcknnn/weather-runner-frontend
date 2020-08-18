@@ -11,6 +11,7 @@ import ScheduleContainer from './ScheduleContainer';
 class App extends React.Component {
   state = { 
     loggedIn: false
+
   }
 
   render() {
@@ -19,22 +20,24 @@ class App extends React.Component {
         <Router>
           <NavBar handleLogin={this.handleLogin} loggedIn={this.state.loggedIn} />
           <Container>
-          <Route path="/profile" render={() => <ProfileContainer/>}/>
-            <Route path="/schedule" render={() => <ScheduleContainer/>}/>
-            <Route exact path="/stats" render={() => <StatsContainer/>}/>
-            <Route path="/friends" render={() => <FriendsContainer/>} />
+          <Route path="/profile" render={() => <ProfileContainer user={this.state.current_user} />}/>
+            <Route path="/schedule" render={() => <ScheduleContainer user={this.state.current_user} />}/>
+            <Route exact path="/stats" render={() => <StatsContainer user={this.state.current_user} />}/>
+            <Route path="/friends" render={() => <FriendsContainer user={this.state.current_user} />} />
           </Container>
         </Router>
 
     );
   }
   handleLogin = (data) => {
+    console.log('data: ', data);
     localStorage.token = data.token
-    this.loggedIn()
+    this.loggedIn(data.user)
   }
-  loggedIn = () => {
+  loggedIn = (user) => {
     this.setState({
-      loggedIn: !this.state.loggedIn
+      loggedIn: !this.state.loggedIn,
+      current_user: user
     })
   }
 }

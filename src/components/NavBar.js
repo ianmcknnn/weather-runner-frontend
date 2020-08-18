@@ -11,36 +11,34 @@ class NavBar extends React.Component {
     };
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
   render() {
     return (
       <Menu color={'blue'} inverted >
-        <Menu.Item>
-          <Header as='h4'>weather-runner-app (placeholder)</Header> 
-        </Menu.Item> 
-        <Menu.Item
+        <Menu.Item as={Header}>weather-runner-app (placeholder)</Menu.Item>
+
+        <Menu.Item as={NavLink} to="/profile"
           name='profile'
           active={this.state.activeItem === 'profile'}
           onClick={this.handleItemClick}
-        ><NavLink to="/profile">Profile</NavLink></Menu.Item>
+        />
 
-        <Menu.Item
+        <Menu.Item as={NavLink} to="/schedule"
           name='schedule'
           active={this.state.activeItem === 'schedule'}
           onClick={this.handleItemClick}
-        ><NavLink to="/schedule" >Schedule</NavLink></Menu.Item>
+        />
 
-        <Menu.Item
+        <Menu.Item as={NavLink} to="/stats"
           name='stats'
           active={this.state.activeItem === 'stats'}
           onClick={this.handleItemClick}
-        ><NavLink to="/stats" >Stats</NavLink></Menu.Item>
-        <Menu.Item
+        />
+
+        <Menu.Item as={NavLink} to="/friends"
           name='friends'
           active={this.state.activeItem === 'friends'}
           onClick={this.handleItemClick}
-        ><NavLink to="/friends" >Friends</NavLink></Menu.Item>
+        />
         <Menu.Menu position="right">
           {this.props.loggedIn ? 
             <Menu.Item 
