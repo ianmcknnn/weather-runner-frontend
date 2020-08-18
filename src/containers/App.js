@@ -28,23 +28,30 @@ class App extends React.Component {
         <Router>
           <NavBar logOut={this.logOut} handleLogin={this.handleLogin} loggedIn={this.state.loggedIn} />
           <Container>
-            <Route exact path="/" render={() => <Welcome />}/>
-            <Route path="/profile" render={() => <ProfileContainer user={this.state.current_user} />}/>
-            <Route path="/schedule" render={() => <ScheduleContainer user={this.state.current_user} />}/>
-            <Route exact path="/stats" render={() => <StatsContainer user={this.state.current_user} />}/>
-            <Route path="/friends" render={() => <FriendsContainer user={this.state.current_user} />} />
+            <Route exact path="/" 
+            render={this.state.loggedIn ? () => <Redirect to="/profile" /> : () => <Welcome />} />
+            <Route path="/profile" 
+            render={!this.state.loggedIn ? () => <Redirect to="/" /> : (rProps) => <ProfileContainer 
+              user={this.state.current_user} {...rProps}/>} />
+            <Route path="/schedule" 
+            render={!this.state.loggedIn ? () => <Redirect to="/" /> : (rProps) => <ScheduleContainer 
+              user={this.state.current_user} {...rProps}/>} />
+            <Route exact path="/stats" 
+            render={!this.state.loggedIn ? () => <Redirect to="/" /> :(rProps) => <StatsContainer 
+              user={this.state.current_user} {...rProps}/>} />
+            <Route path="/friends" 
+            render={!this.state.loggedIn ? () => <Redirect to="/" /> :(rProps) => <FriendsContainer 
+              user={this.state.current_user} {...rProps}/>}  />
           </Container>
         </Router>
-
     );
   }
   handleLogin = (data) => {
-    localStorage.token = data.token
-    localStorage.user_id = 
+    localStorage.token = data.token;
     this.setState({
       loggedIn: true,
       current_user: data.user
-    })
+    });
   }
  
 
