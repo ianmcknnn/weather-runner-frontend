@@ -1,6 +1,6 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import { Menu, Header } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import AuthModal from "./AuthModal";
 
 class NavBar extends React.Component {
@@ -14,7 +14,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <Menu color={'blue'} inverted >
-        <Menu.Item as={Header}>weather-runner-app (placeholder)</Menu.Item>
+        <Menu.Item as={NavLink} to="/">weather-runner-app (placeholder)</Menu.Item>
 
         <Menu.Item as={NavLink} to="/profile"
           name='profile'
@@ -45,7 +45,7 @@ class NavBar extends React.Component {
             name='logout'
             active={this.state.activeItem === 'logout'}
             content='Logout'
-            onClick={this.handleItemClick}
+            onClick={this.props.logOut}
             />
           :
             <AuthModal handleLogin={this.props.handleLogin} />

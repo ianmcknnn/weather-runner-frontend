@@ -1,8 +1,9 @@
 import React from 'react';
 import {Container} from 'semantic-ui-react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import '../App.css';
 import NavBar from '../components/NavBar';
+import Welcome from "./Welcome";
 import ProfileContainer from './ProfileContainer';
 import FriendsContainer from './FriendsContainer';
 import StatsContainer from './StatsContainer';
@@ -14,13 +15,21 @@ class App extends React.Component {
 
   }
 
+  componentDidMount(){
+    if (localStorage.token) {
+      this.setState({ loggedIn: true })
+
+    }
+  }
+
   render() {
     return (
         
         <Router>
-          <NavBar handleLogin={this.handleLogin} loggedIn={this.state.loggedIn} />
+          <NavBar logOut={this.logOut} handleLogin={this.handleLogin} loggedIn={this.state.loggedIn} />
           <Container>
-          <Route path="/profile" render={() => <ProfileContainer user={this.state.current_user} />}/>
+            <Route exact path="/" render={() => <Welcome />}/>
+            <Route path="/profile" render={() => <ProfileContainer user={this.state.current_user} />}/>
             <Route path="/schedule" render={() => <ScheduleContainer user={this.state.current_user} />}/>
             <Route exact path="/stats" render={() => <StatsContainer user={this.state.current_user} />}/>
             <Route path="/friends" render={() => <FriendsContainer user={this.state.current_user} />} />
@@ -30,15 +39,22 @@ class App extends React.Component {
     );
   }
   handleLogin = (data) => {
-    console.log('data: ', data);
     localStorage.token = data.token
-    this.loggedIn(data.user)
-  }
-  loggedIn = (user) => {
+    localStorage.user_id = 
     this.setState({
-      loggedIn: !this.state.loggedIn,
-      current_user: user
+      loggedIn: true,
+      current_user: data.user
     })
+  }
+ 
+
+  logOut = () => {
+    localStorage.clear()
+    this.setState({
+      loggedIn: false,
+      current_user: null
+    })
+    return <Redirect to="/" />
   }
 }
 
