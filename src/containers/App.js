@@ -43,7 +43,7 @@ class App extends React.Component {
             render={this.state.loggedIn ? () => <Redirect to="/profile" /> : () => <Welcome />} />
             <Route path="/profile" 
             render={!this.state.loggedIn ? () => <Redirect to="/" /> : (rProps) => <ProfileContainer 
-              user={this.state.current_user} {...rProps}/>} />
+              user={this.state.current_user} handleLogin={this.handleLogin} {...rProps}/>} />
             <Route path="/schedule" 
             render={!this.state.loggedIn ? () => <Redirect to="/" /> : (rProps) => <ScheduleContainer 
               user={this.state.current_user} {...rProps}/>} />

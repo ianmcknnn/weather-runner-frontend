@@ -52,3 +52,13 @@ body {
   overflow: hidden;
   background-image: linear-gradient(to top, #8ec9fc 0%, #dffffe 100%);
 }
+
+div.extra.content {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+div.extra.content i {
+  margin-left: 20px;
+}

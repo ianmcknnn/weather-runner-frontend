@@ -1,31 +1,30 @@
 import React from 'react';
 import {Card, Image, Icon} from "semantic-ui-react";
 import IMG from './runner_default.png';
+import UserUpdate from "./UserUpdate";
 
-class BioSection extends React.Component {
-  render() {
+function BioSection(props) {
 
-    const {user} = this.props
-
-    
-    return (
-      <Card>
-    <Image src={user.img_url || IMG} wrapped ui={false} circular />
-    <Card.Content>
-      <Card.Header>{user.name}</Card.Header>
-      <Card.Description>
-        {user.bio || "Add a bio!"}
-      </Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name='user' />
-        {0} Friends
-      </a>
-    </Card.Content>
-  </Card>
-    )
-  }
+  const {user} = props
+  
+  return (
+    <Card>
+  <Image src={user.img_url || IMG} wrapped ui={false} circular />
+  <Card.Content>
+    <Card.Header>{user.name}</Card.Header>
+    <Card.Description>
+      {user.bio || "Add a bio!"}
+    </Card.Description>
+  </Card.Content>
+  <Card.Content extra>
+    <a href={'/friends'}>
+      <Icon name='user' />
+      {0} Friends
+    </a>
+    <UserUpdate handleLogin={props.handleLogin} user={user} style={{textAlign: 'right'}} />
+  </Card.Content>
+</Card>
+  )
 }
 
 export default BioSection;
