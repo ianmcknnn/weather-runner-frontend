@@ -17,8 +17,19 @@ class App extends React.Component {
 
   componentDidMount(){
     if (localStorage.token) {
-      this.setState({ loggedIn: true })
-
+      let request = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.token}`
+        }
+      }
+      fetch(`http://localhost:3000/api/v1/users/${localStorage.current}`, request)
+      .then(r => r.json())
+      .then(data => this.setState({ 
+        loggedIn: true,
+        current_user: data.user
+      }))
     }
   }
 
@@ -47,7 +58,9 @@ class App extends React.Component {
     );
   }
   handleLogin = (data) => {
+    console.log('data: ', data);
     localStorage.token = data.token;
+    localStorage.current = data.user.id
     this.setState({
       loggedIn: true,
       current_user: data.user
@@ -61,7 +74,6 @@ class App extends React.Component {
       loggedIn: false,
       current_user: null
     })
-    return <Redirect to="/" />
   }
 }
 

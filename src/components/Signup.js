@@ -37,13 +37,9 @@ class Signup extends React.Component {
       },
       body: JSON.stringify(this.state)
     }
-    fetch(`http://localhost:3000/api/v1/users`, request)
+    fetch(`http://localhost:3000/api/v1/signup`, request)
     .then(r => r.json())
-    .then(data => this.handleResponse(data, e))
-  }
-  handleResponse = (data, e) => {
-    e.target.reset()
-    localStorage.token = data.token
+    .then(data => this.props.handleLogin(data))
   }
 
 }
