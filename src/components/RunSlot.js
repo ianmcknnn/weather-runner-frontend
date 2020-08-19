@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Divider, Grid } from 'semantic-ui-react';
+import { Item, Divider, Grid, Rating } from 'semantic-ui-react';
 import { format } from 'date-fns'
 import { parseISO } from 'date-fns/esm';
 
@@ -20,7 +20,7 @@ function RunSlot(props) {
         <Item>{`${run.distance} mile${run.distance === 1 ? '' : 's'}`}</Item>
       </Grid.Column>
       <Grid.Column width={4}>
-        <Item>{run.rating}</Item>
+        <Rating icon='star' rating={run.rating} defaultRating={3} maxRating={5} />
       </Grid.Column>
     </Grid.Row>
 

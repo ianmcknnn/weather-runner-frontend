@@ -17,7 +17,7 @@ function ProfileContainer(props) {
           <Grid.Column width={12}>
             <GoalsSection user={user} />
             <Segment>
-              <RunsSection user={user} />
+              <RunsSection runs={user.runs} />
             </Segment>
           </Grid.Column>
         </Grid.Row>

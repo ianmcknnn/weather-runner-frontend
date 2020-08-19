@@ -1,21 +1,35 @@
 import React from 'react'
 import {VictoryPie, VictoryLabel, VictoryAnimation} from "victory"
+import {isThisWeek} from "date-fns"
+import { parseISO } from 'date-fns/esm';
 
 class ProgressDonut extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [{ x:1, y: 2}, {x:2, y: 3}]
+      data: [{ x:1, y: 0}, {x:2, y: props.user.weekly_run_quota}]
     };
   }
 
+  componentDidMount() {
+    const runs = this.props.user.runs;
+    const runsThisWeek = runs.filter(run => isThisWeek(parseISO(run.date)))
+    this.setState({
+      data: [{ x:1, y: runsThisWeek.length}, 
+        {x:2, y: this.props.user.weekly_run_quota-runsThisWeek.length}]
+    })
+  }
+  
+
   render() {
-    const {user} = this.props
+    const quota = this.props.user.weekly_run_quota
+    const runs = this.props.user.runs;
+    const runsThisWeek = runs.filter(run => isThisWeek(parseISO(run.date)))
     return (
         <svg viewBox="0 0 400 400" width="100%" height="100%">
           <VictoryPie
             standalone={false}
-            animate={{ duration: 2000 }}
+            animate={{ duration: 3000 }}
             width={400} height={400}
             data={this.state.data}
             innerRadius={110}
@@ -23,20 +37,20 @@ class ProgressDonut extends React.Component {
             labels={() => null}
             style={{
               data: { fill: ({ datum }) => {
-                const color = datum.y > 5/2 ? "green" : "red";
-                return datum.x === 1 ? color : "transparent";
+                const color = datum.y > quota/2 ? "green" : "red";
+                return datum.x === 1 ? color : "#d2e4e8";
               }
               }
             }}
           />
-          <VictoryAnimation duration={2000} data={this.state}>
+          <VictoryAnimation duration={3000} data={this.state}>
             {(newProps) => {
               return (
                 <VictoryLabel
                   textAnchor="middle" verticalAnchor="middle"
                   x={200} y={200}
-                  text={`${3} / ${5}`}
-                  style={{ fontSize: 35 }}
+                  text={`${runsThisWeek.length} / ${quota}`}
+                  style={{ fontSize: 45 }}
                 />
               );
             }}
