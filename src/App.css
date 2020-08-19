@@ -47,6 +47,10 @@
 * {
   font-family: 'Carter One', cursive;
 }
+
+html {
+  background-image: linear-gradient(to top, #8ec9fc 0%, #dffffe 100%);
+}
 body {
   height: 100vh;
   overflow: hidden;
