@@ -80,6 +80,7 @@ class UserUpdate extends React.Component {
     fetch(`http://localhost:3000/api/v1/users/${this.props.user.id}`, request)
     .then(r => r.json())
     .then(data => this.props.handleLogin(data))
+    this.setOpen(false)
   }
 }
 
