@@ -16,7 +16,7 @@ class UserUpdate extends React.Component {
   render() {
     return (
       <Modal
-      size="medium"
+      size="small"
       centered={true}
       onClose={() => this.setOpen(false)}
       onOpen={() => this.setOpen(true)}

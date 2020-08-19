@@ -1,8 +1,16 @@
 import React from 'react'
 
 class ScheduleContainer extends React.Component {
+
+  componentDidMount() {
+  }
+
   render() {
-    return ("SCHEDULE")
+    return (<div>
+      {this.futureRuns()}
+    </div>)
+
+    
     // Takes in a user object with an array of runs
     // Also takes in forecast data in current, hourly, and weekly formats
     // Display forecast data to user
@@ -12,6 +20,17 @@ class ScheduleContainer extends React.Component {
     // Access the array of runs
       // Display only those runs whose datetime is after the current datetime
   }
+
+  futureRuns() {
+    return this.props.user.runs.filter(run => run.date > Date.now)
+  }
+
+  createNewRun() {
+
+  }
+
+
+
 }
 
 export default ScheduleContainer
