@@ -62,3 +62,16 @@ div.extra.content {
 div.extra.content i {
   margin-left: 20px;
 }
+
+div.goal-progress{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  height: 25vh;
+}
+
+div.progress-desc{
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 1.5rem;
+}

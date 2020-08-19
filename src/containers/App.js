@@ -12,7 +12,6 @@ import ScheduleContainer from './ScheduleContainer';
 class App extends React.Component {
   state = { 
     loggedIn: false
-
   }
 
   componentDidMount(){

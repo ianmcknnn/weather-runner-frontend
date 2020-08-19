@@ -12,6 +12,9 @@ function BioSection(props) {
   <Image src={user.img_url || IMG} wrapped ui={false} circular />
   <Card.Content>
     <Card.Header>{user.name}</Card.Header>
+    <Card.Meta>
+        <span className='location'>{user.location}</span>
+      </Card.Meta>
     <Card.Description>
       {user.bio || "Add a bio!"}
     </Card.Description>
@@ -21,7 +24,7 @@ function BioSection(props) {
       <Icon name='user' />
       {0} Friends
     </a>
-    <UserUpdate handleLogin={props.handleLogin} user={user} style={{textAlign: 'right'}} />
+    <UserUpdate handleLogin={props.handleLogin} user={user} />
   </Card.Content>
 </Card>
   )
