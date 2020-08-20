@@ -4,8 +4,8 @@ import RunSlot from './RunSlot'
 function RunsSection(props) {
   const runs = props.runs
   return (
-    <Grid >
-      <Grid.Row divided inverted color={'blue'}>
+    <Grid>
+      <Grid.Row divided inverted="true" color={'blue'}>
         <Grid.Column width={4}>
           <Item>Date</Item> 
         </Grid.Column>

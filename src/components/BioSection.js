@@ -13,7 +13,8 @@ function BioSection(props) {
   <Card.Content>
     <Card.Header>{user.name}</Card.Header>
     <Card.Meta>
-        <span className='location'>{user.location}</span>
+        <span className='location'>{user.location}</span><br/>
+        <span className='location'>{user.zipcode}</span>
       </Card.Meta>
     <Card.Description>
       {user.bio || "Add a bio!"}
