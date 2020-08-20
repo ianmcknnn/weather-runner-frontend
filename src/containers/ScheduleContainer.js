@@ -1,4 +1,5 @@
 import React from 'react'
+import RunsSection from '../components/RunsSection'
 
 class ScheduleContainer extends React.Component {
 
@@ -7,7 +8,7 @@ class ScheduleContainer extends React.Component {
 
   render() {
     return (<div>
-      {this.futureRuns()}
+      <RunsSection runs={this.futureRuns()}/>
     </div>)
 
     
@@ -29,7 +30,11 @@ class ScheduleContainer extends React.Component {
 
   }
 
-
+  displayWeather() {
+    fetch('localhost:3000/display/' + this.props.user.zipcode)
+    .then(resp => resp.json())
+    .then(json => console.log(json))
+  }
 
 }
 

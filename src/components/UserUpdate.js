@@ -10,6 +10,7 @@ class UserUpdate extends React.Component {
       weekly_run_quota: props.user.weekly_run_quota,
       img_url: props.user.img_url,
       location: props.user.location,
+      zipcode: props.user.zipcode,
       open: false
     };
   }
@@ -28,19 +29,22 @@ class UserUpdate extends React.Component {
           <Form onSubmit={(e) => this.handleSubmit(e)}>
             <Form.Input onChange={(e) => this.handleChange(e)} 
             name="name" required={true} label="Name" 
-            type="text" value={this.state.name}/>
+            type="text" value={this.state.name || ''}/>
             <Form.Input onChange={(e) => this.handleChange(e)} 
             name="bio"  label="Bio" type="textarea" 
-            value={this.state.bio}/>
+            value={this.state.bio || ''}/>
             <Form.Input onChange={(e) => this.handleChange(e)} 
             name="weekly_run_quota" label='Goals: Runs per Week' 
-            type='text' value={this.state.weekly_run_quota}/>
+            type='text' value={this.state.weekly_run_quota || ''}/>
             <Form.Input onChange={(e) => this.handleChange(e)} 
             name="img_url" label='Profile Picture (Link)' 
-            type='text' value={this.state.img_url}/>
+            type='text' value={this.state.img_url || ''}/>
             <Form.Input onChange={(e) => this.handleChange(e)} 
             name="location" label='Location' 
-            type='text' value={this.state.location}/>
+            type='text' value={this.state.location || ''}/>
+            <Form.Input onChange={(e) => this.handleChange(e)} 
+            name="zipcode" label='Zip Code' 
+            type='text' value={this.state.zipcode || ''}/>
             <Button type='submit'>Submit</Button>
           </Form>
         </Modal.Content>
@@ -74,7 +78,8 @@ class UserUpdate extends React.Component {
         bio: this.state.bio,
         weekly_run_quota: this.state.weekly_run_quota,
         img_url: this.state.img_url,
-        location: this.state.location
+        location: this.state.location,
+        zipcode: this.state.zipcode
       })
     }
     fetch(`http://localhost:3000/api/v1/users/${this.props.user.id}`, request)
