@@ -38,11 +38,11 @@ class App extends React.Component {
         <Router>
           <NavBar logOut={this.logOut} handleLogin={this.handleLogin} loggedIn={this.state.loggedIn} />
           <Container>
-            <Route exact path="/" 
-            render={this.state.loggedIn ? () => <Redirect to="/profile" /> : () => <Welcome />} />
             <Route path="/profile" 
             render={!this.state.loggedIn ? () => <Redirect to="/" /> : (rProps) => <ProfileContainer 
-              user={this.state.current_user} handleLogin={this.handleLogin} {...rProps}/>} />
+            user={this.state.current_user} handleLogin={this.handleLogin} {...rProps}/>} />
+            <Route exact path="/" 
+            render={this.state.loggedIn ? () => <Redirect to="/profile" /> : () => <Welcome />} />
             <Route path="/schedule" 
             render={!this.state.loggedIn ? () => <Redirect to="/" /> : (rProps) => <ScheduleContainer 
               user={this.state.current_user} {...rProps}/>} />

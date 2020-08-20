@@ -1,6 +1,7 @@
 import React from 'react'
 import {Grid, Item} from "semantic-ui-react"
 import RunSlot from './RunSlot'
+
 function RunsSection(props) {
   const runs = props.runs
   return (
@@ -16,7 +17,7 @@ function RunsSection(props) {
           <Item>Rating</Item>
         </Grid.Column>
       </Grid.Row>
-      {runs.map(run => <RunSlot run={run}/>)}
+      {runs.map(run => <RunSlot handleLogin={props.handleLogin} run={run} key={run.id}/>)}
     </Grid>
   )
 }

@@ -64,18 +64,21 @@ div.extra.content {
 }
 
 div.extra.content i {
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
 div.goal-progress{
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: stretch;
   height: 25vh;
 }
 
 div.progress-desc{
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  align-items: center;
   padding: 1.5rem;
 }
