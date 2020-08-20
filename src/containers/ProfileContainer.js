@@ -3,7 +3,6 @@ import BioSection from "../components/BioSection";
 import GoalsSection from "../components/GoalsSection";
 import RunsSection from "../components/RunsSection";
 import { Grid, Segment } from "semantic-ui-react";
-import ProgressDonut from "../components/ProgressDonut";
 
 function ProfileContainer(props) {
     const { user } = props;
@@ -15,9 +14,9 @@ function ProfileContainer(props) {
           </Grid.Column>
 
           <Grid.Column width={12}>
-            <GoalsSection user={user} />
+            <GoalsSection handleLogin={props.handleLogin} user={user} />
             <Segment>
-              <RunsSection runs={user.runs} />
+              <RunsSection handleLogin={props.handleLogin} runs={user.runs} />
             </Segment>
           </Grid.Column>
         </Grid.Row>

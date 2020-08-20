@@ -11,27 +11,29 @@ class ProgressDonut extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const runs = this.props.user.runs;
-    const runsThisWeek = runs.filter(run => isThisWeek(parseISO(run.date)))
-    this.setState({
-      data: [{ x:1, y: runsThisWeek.length}, 
-        {x:2, y: this.props.user.weekly_run_quota-runsThisWeek.length}]
-    })
-  }
+  // componentDidMount() {
+  //   const runs = this.props.user.runs;
+  //   const runsThisWeek = runs.filter(run => isThisWeek(parseISO(run.date)))
+  //   this.setState({
+  //     data: [{ x:1, y: runsThisWeek.length}, 
+  //       {x:2, y: this.props.user.weekly_run_quota-runsThisWeek.length}]
+  //   })
+  // }
   
 
   render() {
-    const quota = this.props.user.weekly_run_quota
-    const runs = this.props.user.runs;
-    const runsThisWeek = runs.filter(run => isThisWeek(parseISO(run.date)))
+    let quota = this.props.user.weekly_run_quota
+    let runs = this.props.user.runs;
+    let runsThisWeek = runs.filter(run => isThisWeek(parseISO(run.date)))
+    let data = [{ x:1, y: runsThisWeek.length}, 
+      {x:2, y: this.props.user.weekly_run_quota-runsThisWeek.length}]
     return (
         <svg viewBox="0 0 400 400" width="100%" height="100%">
           <VictoryPie
             standalone={false}
-            animate={{ duration: 3000 }}
+            animate={{ duration: 1500 }}
             width={400} height={400}
-            data={this.state.data}
+            data={data}
             innerRadius={110}
             cornerRadius={5}
             labels={() => null}
@@ -44,7 +46,7 @@ class ProgressDonut extends React.Component {
             }}
           />
           <VictoryAnimation duration={3000} data={this.state}>
-            {(newProps) => {
+            {() => {
               return (
                 <VictoryLabel
                   textAnchor="middle" verticalAnchor="middle"
